@@ -1,10 +1,9 @@
 ﻿import {Inject, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map, mergeMap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {TokenService} from './token.service';
 import {API_BASE_URL} from './end-point';
-import {User} from '../models/user.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -18,7 +17,7 @@ export class AuthenticationService {
         return !!this.tokenService.getToken();
     }
 
-    login(username: string, password: string): Observable<User> {
+    login(username: string, password: string): Observable<any> {
         const form = new FormData();
         form.append('username', username);
         form.append('password', password);

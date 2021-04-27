@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TokenService} from '../../services/token.service';
@@ -36,8 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         this.loginForm = this.fb.group({
-            username: ['admin', [Validators.required]],
-            password: ['123', Validators.required]
+            username: ['', [Validators.required]],
+            password: ['', Validators.required]
         });
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     }
@@ -51,24 +50,27 @@ export class LoginComponent implements OnInit, OnDestroy {
      * log in
      */
     onLoginClick(): void {
+        if (this.loginForm.invalid) {
+            return;
+        }
         this.authenticationService
             .login(this.loginForm.value.username, this.loginForm.value.password)
             .subscribe(
-                () => {
-                    const url = this.returnUrl || '/task';
-                    this.router.navigate([url]).catch(() => '');
-                },
-                (error) => {
-                    this.matSnackBar.open(
-                        'Email or password incorrect!!!',
-                        'Error!',
-                        {
-                            panelClass: ['red-600-fg', 'primary-50-bg'],
-                            verticalPosition: 'top',
-                            duration: 2000,
-                        }
-                    );
-                    console.log(error);
+                (res) => {
+                    if (res.status === 'ok') {
+                        const url = this.returnUrl || '/task';
+                        this.router.navigate([url]).catch(() => '');
+                    } else {
+                        this.matSnackBar.open(
+                            'Username or password incorrect!!!',
+                            'Error!',
+                            {
+                                panelClass: ['red-600-fg', 'primary-50-bg'],
+                                verticalPosition: 'top',
+                                duration: 2000,
+                            }
+                        );
+                    }
                 }
             );
     }

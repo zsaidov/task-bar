@@ -3,14 +3,13 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {API_BASE_URL} from '../../services/end-point';
 import {IPagination} from '../../models/pagination.model';
-import {User} from '../../models/task.model';
 import {TokenService} from '../../services/token.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TaskService {
-    data: IPagination<User[]> = {pageIndex: 0, pageSize: 3};
+    data: IPagination = {pageIndex: 0, pageSize: 3};
 
     constructor(private  http: HttpClient,
                 private token: TokenService,

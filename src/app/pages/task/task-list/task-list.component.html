@@ -1,11 +1,6 @@
 <div fxLayout="column" class="table-holder">
     <div class="mat-elevation-z8" fxLayout="row wrap" fxLayoutAlign="center center">
         <table mat-table [dataSource]="dataSource">
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef (click)="onSortClick('id')"> Id</th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="username">
                 <th mat-header-cell *matHeaderCellDef (click)="onSortClick('username')"> Username</th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>

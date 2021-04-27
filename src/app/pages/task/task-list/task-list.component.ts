@@ -13,7 +13,7 @@ export class TaskListComponent implements OnDestroy, OnInit {
     @Output() valueChange = new EventEmitter<{ type: string, data?: any }>();
     @Input() dataSource: MatTableDataSource<User>;
     @Input() total = 0;
-    displayedColumns: string[] = ['id', 'username', 'email', 'text', 'status'];
+    displayedColumns: string[] = ['username', 'email', 'text', 'status'];
     sortField = {
         id: true,
         username: true,

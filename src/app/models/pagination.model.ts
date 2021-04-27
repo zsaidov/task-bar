@@ -1,7 +1,4 @@
-export interface IPagination<T> {
-    hasNextPage?: boolean;
-    hasPreviousPage?: boolean;
+export interface IPagination {
     pageIndex: number;
     pageSize: number;
-    totalCount?: number;
 }
