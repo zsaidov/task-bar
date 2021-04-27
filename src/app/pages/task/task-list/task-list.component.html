@@ -1,0 +1,55 @@
+<div fxLayout="column" class="table-holder">
+    <div class="mat-elevation-z8" fxLayout="row wrap" fxLayoutAlign="center center">
+        <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef (click)="onSortClick('id')"> Id</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef (click)="onSortClick('username')"> Username</th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef (click)="onSortClick('email')"> Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="text">
+                <th mat-header-cell *matHeaderCellDef (click)="onSortClick('text')"> Text</th>
+                <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status</th>
+                <td mat-cell *matCellDef="let element">
+                    <span *ngIf="element.status===0">задача не выполнена</span>
+                    <span *ngIf="element.status===1">задача не выполнена, отредактирована админом</span>
+                    <span *ngIf="element.status===10">задача выполнена</span>
+                    <span *ngIf="element.status===11">задача отредактирована админом и выполнена</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action" *ngIf="auth.isLoggedIn">
+                <th mat-header-cell *matHeaderCellDef> Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button
+                            (click)="onEditClick(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator
+            [length]="total"
+            [pageIndex]="service.data.pageIndex"
+            [pageSize]="service.data.pageSize"
+            (page)="onSelectionChange($event)"
+            showFirstLastButtons></mat-paginator>
+    </div>
+</div>

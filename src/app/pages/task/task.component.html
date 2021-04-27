@@ -1,0 +1,21 @@
+<header>
+    <mat-toolbar color="primary">
+        <span class="example-spacer"></span>
+        <a *ngIf="!auth.isLoggedIn" mat-icon-button class="example-icon" routerLink="/login">Login</a>
+        <button *ngIf="auth.isLoggedIn" mat-icon-button class="example-icon" (click)="onLogoutClick()">Logout</button>
+    </mat-toolbar>
+</header>
+<main>
+    <app-task-list
+        [dataSource]="dataSource"
+        [total]="totalTaskCount"
+        (valueChange)="onValueChange($event)"        >
+    </app-task-list>
+</main>
+<footer>
+    <div class="example-button-container">
+        <button mat-fab color="primary" (click)="onShowPopup()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</footer>

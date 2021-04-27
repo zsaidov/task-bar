@@ -1,0 +1,70 @@
+<div>
+    <mat-toolbar matDialogTitle class="mat-primary m-0">
+        <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">Create task</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content>
+        <form [formGroup]="form" fxLayout="column">
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Username</mat-label>
+                    <mat-icon matSuffix class="secondary-text">account_circle</mat-icon>
+                    <input formControlName="username" matInput required>
+                    <mat-error>Required</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Email</mat-label>
+                    <mat-icon matSuffix class="secondary-text">mail</mat-icon>
+                    <input formControlName="email" matInput required type="email">
+                    <mat-error>Required</mat-error>
+                    <div *ngIf="primaryEmail.errors?.email">
+                         Email not valid.
+                    </div>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field appearance="outline" fxFlex>
+                    <mat-label>Text</mat-label>
+                    <mat-icon matSuffix class="secondary-text">text_fields</mat-icon>
+                    <textarea required matInput formControlName="text"></textarea>
+                    <mat-error>Required!</mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" floatLabel="always" fxFlex
+                            *ngIf="isEditable">
+                <mat-label>Status</mat-label>
+                <mat-select
+                    required
+                    formControlName="status">
+                    <mat-option [value]="0">задача не выполнена</mat-option>
+                    <mat-option [value]="1">задача не выполнена, отредактирована админом</mat-option>
+                    <mat-option [value]="10">задача выполнена</mat-option>
+                    <mat-option [value]="10">задача отредактирована админом и выполнена</mat-option>
+                </mat-select>
+                <mat-icon matSuffix class="secondary-text">person_outline</mat-icon>
+                <mat-error>Required!</mat-error>
+            </mat-form-field>
+
+        </form>
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="end center">
+        <button mat-button
+                [disabled]="form.invalid"
+                class="mat-raised-button mat-primary"
+                (click)="matDialogRef.close([action,form.getRawValue()])">SAVE
+        </button>
+
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TaskBar</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script>
+      window.hostUrl = 'https://uxcandy.com/~shapoval/test-task-backend/v2/'
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyBTpC4UO2g1eiD9y-AR9gmHvXpGXt527k0",
+          authDomain: "task-bar-f59e9.firebaseapp.com",
+          projectId: "task-bar-f59e9",
+          storageBucket: "task-bar-f59e9.appspot.com",
+          messagingSenderId: "553196373671",
+          appId: "1:553196373671:web:d0016e8d2e4866b0393d82"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+  </script>
+</body>
+</html>

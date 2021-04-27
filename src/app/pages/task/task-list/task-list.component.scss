@@ -1,0 +1,26 @@
+
+:host {
+    .table-holder {
+        align-items: center;
+        width: 80%;
+        margin: auto;
+    }
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+table, mat-paginator {
+    width: 100%;
+}
+
+.mat-header-cell {
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
+}

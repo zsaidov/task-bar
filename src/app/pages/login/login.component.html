@@ -1,0 +1,35 @@
+<div fxLayout="column" class="login">
+    <div class="login-form-wrapper" fxLayout="column" fxLayoutAlign="top center">
+        <div class="login-form">
+            <div class="title">Login</div>
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username">
+                    <mat-icon matSuffix class="secondary-text">person</mat-icon>
+                    <mat-error *ngIf="!loginForm.get('username').hasError('username')">
+                        Username required!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+                    <mat-error>
+                        Password required!
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="accent"
+                        class="submit-button"
+                        (click)="onLoginClick()"
+                        [disabled]="loginForm.invalid">
+                    Log In
+                </button>
+                <a mat-raised-button color="accent"
+                   class="submit-button"
+                   routerLink="/task">Back to home</a>
+            </form>
+        </div>
+    </div>
+</div>
